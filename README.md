@@ -341,7 +341,8 @@ MIT License - feel free to learn from and build upon this project!
 
 ## 🔗 Links
 
-- **Live Demo:** [Coming soon after deployment]
+- **GitHub Repository:** [github.com/JATIN-1607/HolocronNexus](https://github.com/JATIN-1607/HolocronNexus)
+- **Live Demo:** [holocron-nexus.vercel.app](https://holocron-nexus.vercel.app)
 - **Video Walkthrough:** [Coming soon]
 - **Tambo Docs:** [tambo.co/docs](https://tambo.co/docs)
 - **Hackathon:** [wemakedevs.org/hackathons/tambo](https://www.wemakedevs.org/hackathons/tambo)
