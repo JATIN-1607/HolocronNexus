@@ -302,13 +302,24 @@ Holocron renders:
 
 ## 📸 Screenshots
 
-*[Screenshots will be added after deployment]*
+### 🎬 Video Demo
+
+**Watch the full demo on YouTube:**
+
+[![Holocron Nexus Demo](https://img.shields.io/badge/▶️_Watch_Demo-YouTube-red?style=for-the-badge&logo=youtube)](https://youtu.be/Ey2cL1tsd4A)
+
+The video showcases:
+- ✅ Homepage with Sith Holocron animation
+- ✅ All 8 Tambo generative components in action
+- ✅ AI dynamically selecting optimal UI formats
+- ✅ Live demos with different question types
+- ✅ Conversation history and sidebar features
 
 ---
 
 ## 🎬 Demo Video
 
-*[Demo video link will be added]*
+**Full walkthrough:** [Watch on YouTube](https://youtu.be/Ey2cL1tsd4A)
 
 ---
 
@@ -351,7 +362,7 @@ MIT License - feel free to learn from and build upon this project!
 
 - **GitHub Repository:** [github.com/JATIN-1607/HolocronNexus](https://github.com/JATIN-1607/HolocronNexus)
 - **Live Demo:** [holocron-nexus.vercel.app](https://holocron-nexus.vercel.app)
-- **Video Walkthrough:** [Coming soon]
+- **Video Walkthrough:** [youtu.be/Ey2cL1tsd4A](https://youtu.be/Ey2cL1tsd4A)
 - **Tambo Docs:** [tambo.co/docs](https://tambo.co/docs)
 - **Hackathon:** [wemakedevs.org/hackathons/tambo](https://www.wemakedevs.org/hackathons/tambo)
 
