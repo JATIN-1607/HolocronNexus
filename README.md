@@ -325,6 +325,14 @@ Holocron renders:
 
 ---
 
+## 👥 Team
+
+**Team Origin** - Built by **Jatin Velagapudi** and **Piyush Kumar** for WeMakeDevs "The UI Strikes Back" Hackathon 2026.
+
+We spent several days learning Tambo SDK from scratch, building 8 custom generative components, and debugging CSS animations. The result? An AI tutor that makes learning code actually enjoyable!
+
+---
+
 ## 📝 License
 
 MIT License - feel free to learn from and build upon this project!
