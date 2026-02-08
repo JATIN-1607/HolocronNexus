@@ -1,0 +1,669 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Base Colors */
+  --sith-black: #000000;
+  --sith-black-light: #0a0000;
+  --sith-gray: #1a0808;
+  --sith-gray-light: #2a1010;
+
+  /* Red Spectrum (Primary Brand) */
+  --sith-red: #dc2626;
+  --sith-red-dark: #991b1b;
+  --sith-red-light: #ef4444;
+  --sith-red-glow: #fca5a5;
+  --sith-red-bright: #ff4444;
+
+  /* Text Colors */
+  --sith-text-primary: #f5f5f5;
+  --sith-text-secondary: #fca5a5;
+  --sith-text-muted: #991b1b;
+
+  /* Accent Colors */
+  --sith-gold: #fbbf24;
+  --sith-gold-light: #fcd34d;
+  --sith-purple: #a855f7;
+  --sith-purple-light: #c084fc;
+  --sith-cyan: #06b6d4;
+  --sith-cyan-light: #22d3ee;
+  --sith-green: #10b981;
+  --sith-green-light: #34d399;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--sith-black);
+  color: var(--sith-text-primary);
+  font-family: 'JetBrains Mono', monospace;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ============================================
+   BACKGROUND EFFECTS LAYER
+   ============================================ */
+
+.background-effects {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Animated Digital Grid */
+.grid-overlay {
+  position: absolute;
+  top: -40px;
+  left: -40px;
+  width: calc(100% + 80px);
+  height: calc(100% + 80px);
+  background-image:
+    linear-gradient(rgba(220, 38, 38, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(220, 38, 38, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: grid-pan 20s linear infinite;
+  opacity: 0.4;
+}
+
+/* Static Noise Overlay */
+.noise-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.15;
+  mix-blend-mode: screen;
+}
+
+/* Vertical Scanning Line */
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to bottom,
+      transparent,
+      rgba(220, 38, 38, 0.8),
+      rgba(220, 38, 38, 0.4),
+      transparent);
+  box-shadow:
+    0 0 10px rgba(220, 38, 38, 0.8),
+    0 0 20px rgba(220, 38, 38, 0.6);
+  animation: scan 4s linear infinite;
+  z-index: 1;
+}
+
+/* ============================================
+   GLASSMORPHISM COMPONENTS
+   ============================================ */
+
+.glass-card {
+  background: linear-gradient(135deg,
+      rgba(10, 0, 0, 0.9) 0%,
+      rgba(20, 0, 0, 0.85) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--sith-red);
+  border-radius: 12px;
+  box-shadow:
+    0 0 30px rgba(220, 38, 38, 0.4),
+    0 8px 32px rgba(0, 0, 0, 0.8),
+    inset 0 0 60px rgba(220, 38, 38, 0.05);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  box-shadow:
+    0 0 40px rgba(220, 38, 38, 0.5),
+    0 12px 40px rgba(0, 0, 0, 0.9),
+    inset 0 0 80px rgba(220, 38, 38, 0.08);
+  transform: translateY(-2px);
+}
+
+.glass-card-light {
+  background: rgba(10, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(220, 38, 38, 0.5);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.glass-card-light:hover {
+  background: rgba(15, 0, 0, 0.75);
+  border-color: rgba(220, 38, 38, 0.7);
+}
+
+/* Tech Corners (L-shaped brackets) */
+.tech-corners::before,
+.tech-corners::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--sith-red);
+}
+
+.tech-corners::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.tech-corners::after {
+  top: -1px;
+  right: -1px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.tech-corners-bottom::before,
+.tech-corners-bottom::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--sith-red);
+}
+
+.tech-corners-bottom::before {
+  bottom: -1px;
+  left: -1px;
+  border-right: none;
+  border-top: none;
+}
+
+.tech-corners-bottom::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+
+/* ============================================
+   GHOST BUTTONS
+   ============================================ */
+
+.ghost-button {
+  background: transparent;
+  border: 2px solid var(--sith-red);
+  color: var(--sith-red);
+  padding: 16px 48px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.ghost-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(220, 38, 38, 0.1),
+      transparent);
+  transition: left 0.6s ease;
+}
+
+.ghost-button:hover::before {
+  left: 100%;
+}
+
+.ghost-button:hover {
+  background: linear-gradient(135deg,
+      rgba(220, 38, 38, 0.2),
+      rgba(220, 38, 38, 0.1));
+  border-color: var(--sith-red-light);
+  letter-spacing: 5px;
+  box-shadow:
+    0 0 20px rgba(220, 38, 38, 0.6),
+    0 0 40px rgba(220, 38, 38, 0.4),
+    inset 0 0 20px rgba(220, 38, 38, 0.1);
+  transform: scale(1.05);
+}
+
+.ghost-button:active {
+  transform: scale(0.98);
+  box-shadow:
+    0 0 10px rgba(220, 38, 38, 0.8),
+    inset 0 0 30px rgba(220, 38, 38, 0.2);
+}
+
+/* ============================================
+   CUSTOM INPUT FIELDS
+   ============================================ */
+
+.input-field {
+  background: rgba(10, 0, 0, 0.8);
+  border: 2px solid rgba(220, 38, 38, 0.5);
+  color: var(--sith-red);
+  padding: 12px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  border-radius: 4px;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.input-field::placeholder {
+  color: rgba(220, 38, 38, 0.4);
+}
+
+.input-field:focus {
+  border-color: var(--sith-red);
+  box-shadow:
+    0 0 15px rgba(220, 38, 38, 0.5),
+    inset 0 0 10px rgba(220, 38, 38, 0.1);
+  background: rgba(20, 0, 0, 0.9);
+}
+
+/* Textarea specific */
+.input-field.textarea {
+  resize: vertical;
+  min-height: 60px;
+  max-height: 200px;
+}
+
+/* ============================================
+   PROGRESS BARS
+   ============================================ */
+
+.progress-bar-container {
+  width: 100%;
+  height: 8px;
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg,
+      var(--sith-red-dark),
+      var(--sith-red),
+      var(--sith-red-light));
+  box-shadow:
+    0 0 10px rgba(220, 38, 38, 0.8),
+    inset 0 0 5px rgba(255, 255, 255, 0.2);
+  transition: width 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+/* ============================================
+   SUGGESTION CHIPS
+   ============================================ */
+
+.suggestion-chip {
+  background: rgba(10, 0, 0, 0.6);
+  border: 1px solid rgba(220, 38, 38, 0.5);
+  color: var(--sith-red);
+  padding: 8px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.suggestion-chip:hover {
+  background: rgba(220, 38, 38, 0.15);
+  border-color: var(--sith-red);
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.4);
+  transform: translateY(-2px);
+}
+
+.suggestion-chip:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   MESSAGE BUBBLES
+   ============================================ */
+
+.message-user {
+  background: linear-gradient(135deg,
+      rgba(220, 38, 38, 0.2),
+      rgba(220, 38, 38, 0.1));
+  border: 1px solid rgba(220, 38, 38, 0.5);
+  border-left: 3px solid var(--sith-red);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-left: auto;
+  max-width: 80%;
+  box-shadow: 0 2px 10px rgba(220, 38, 38, 0.2);
+}
+
+.message-ai {
+  background: rgba(10, 0, 0, 0.7);
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-left: 3px solid rgba(220, 38, 38, 0.6);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-right: auto;
+  max-width: 80%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.8);
+  border-left: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg,
+      rgba(220, 38, 38, 0.6),
+      rgba(220, 38, 38, 0.4));
+  border-radius: 5px;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg,
+      rgba(220, 38, 38, 0.8),
+      rgba(220, 38, 38, 0.6));
+  box-shadow: 0 0 5px rgba(220, 38, 38, 0.5);
+}
+
+/* ============================================
+   PULSING STATUS INDICATOR
+   ============================================ */
+
+.status-online {
+  width: 12px;
+  height: 12px;
+  background: var(--sith-red);
+  border-radius: 50%;
+  box-shadow:
+    0 0 5px var(--sith-red),
+    0 0 10px var(--sith-red),
+    0 0 15px var(--sith-red);
+  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ============================================
+   CODE BLOCKS
+   ============================================ */
+
+pre {
+  background: rgba(5, 0, 0, 0.9) !important;
+  border: 1px solid rgba(220, 38, 38, 0.3);
+  border-radius: 6px;
+  padding: 16px !important;
+  overflow-x: auto;
+  margin: 12px 0;
+}
+
+code {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 13px;
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+
+.text-glow {
+  text-shadow:
+    0 0 10px rgba(220, 38, 38, 0.8),
+    0 0 20px rgba(220, 38, 38, 0.5);
+}
+
+.border-glow {
+  box-shadow:
+    0 0 10px rgba(220, 38, 38, 0.5),
+    0 0 20px rgba(220, 38, 38, 0.3);
+}
+
+.divider-red {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg,
+      transparent,
+      var(--sith-red),
+      transparent);
+  margin: 24px 0;
+}
+
+/* Fade in animation for page loads */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Glitch effect for headers */
+@keyframes glitch {
+  0% {
+    text-shadow:
+      2px 0 var(--sith-red),
+      -2px 0 rgba(220, 38, 38, 0.5);
+  }
+
+  25% {
+    text-shadow:
+      -2px 0 var(--sith-red),
+      2px 0 rgba(220, 38, 38, 0.5);
+  }
+
+  50% {
+    text-shadow:
+      2px 0 var(--sith-red),
+      -2px 0 rgba(220, 38, 38, 0.5);
+  }
+
+  75% {
+    text-shadow:
+      -2px 0 var(--sith-red),
+      2px 0 rgba(220, 38, 38, 0.5);
+  }
+
+  100% {
+    text-shadow:
+      2px 0 var(--sith-red),
+      -2px 0 rgba(220, 38, 38, 0.5);
+  }
+}
+
+.glitch-hover:hover {
+  animation: glitch 0.3s infinite;
+}
+
+/* ============================================
+   PREMIUM ANIMATIONS
+   ============================================ */
+
+/* Slide up entrance animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Staggered entrance */
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+
+.stagger-4 {
+  animation-delay: 0.4s;
+}
+
+.stagger-5 {
+  animation-delay: 0.5s;
+}
+
+/* Fade and scale animation */
+@keyframes fadeScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-scale {
+  animation: fadeScale 0.5s ease-out;
+}
+
+/* Ripple effect */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Holocron rotation */
+@keyframes holocronRotate {
+  from {
+    transform: rotateY(0deg) rotateX(15deg);
+  }
+
+  to {
+    transform: rotateY(360deg) rotateX(15deg);
+  }
+}
+
+.holocron-rotate {
+  animation: holocronRotate 20s linear infinite;
+}
+
+/* Float animation */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Glow pulse */
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px var(--sith-red),
+      0 0 10px var(--sith-red),
+      0 0 15px var(--sith-red);
+  }
+
+  50% {
+    box-shadow: 0 0 10px var(--sith-red),
+      0 0 20px var(--sith-red),
+      0 0 30px var(--sith-red),
+      0 0 40px var(--sith-red);
+  }
+}
+
+.glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
+}
