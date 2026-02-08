@@ -355,22 +355,6 @@ MIT License - feel free to learn from and build upon this project!
 - **WeMakeDevs** for hosting "The UI Strikes Back" hackathon
 - **The Sith Order** for philosophical inspiration 😈
 
-### Development Tools & Assistance
-
-This project was built by **Jatin Velagapudi** and **Piyush Kumar** with assistance from AI coding tools (Google Gemini) for:
-- Code scaffolding and boilerplate generation
-- Debugging TypeScript type errors
-- Documentation writing
-- Deployment guidance
-
-**Core contributions by our team:**
-- ✅ Original concept and Sith Holocron theme design
-- ✅ All 8 custom component designs and user experience
-- ✅ Tambo SDK integration and component architecture
-- ✅ UI/UX design and CSS styling
-- ✅ Problem-solving and technical decisions
-- ✅ Testing, debugging, and deployment
-
 ---
 
 ## 🔗 Links
