@@ -300,7 +300,6 @@ Holocron renders:
 
 ---
 
-## 📸 Screenshots
 
 ### 🎬 Video Demo
 
