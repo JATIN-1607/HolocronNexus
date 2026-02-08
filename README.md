@@ -171,7 +171,7 @@ Pure Black (#000000) + Crimson Spectrum:
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/JATIN-1607/HolocronNexus.git
 cd HolocronNexus
 
 # Install dependencies
